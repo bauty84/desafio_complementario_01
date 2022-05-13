@@ -21,7 +21,7 @@ let producto = 0;
 let totalToPay = 0;
 
 // Carga el select con el array de productos
-window.onload = function fillSelect() {
+window.onload = function fillSelects() {
 
     productos.forEach((element) => {
         let tag = document.createElement("option");
@@ -46,7 +46,7 @@ const btnAdd = document
         let select = document.getElementById("selectProd");
         let selectQty = document.getElementById("cantidad");
         producto = select.options[select.selectedIndex].value;
-        cantidad = selectQty.options[select.selectedIndex].value
+        cantidad = selectQty.options[selectQty.selectedIndex].value;
 
         switch (producto) {
             case "frutilla":
@@ -90,7 +90,7 @@ const btnAdd = document
         alert("Producto agregado exitosamente!");
     });
 
-// Cuando quiere sacar el total de lo seleccionado
+// Cuando quiere sacar el total de lo seleccionado - Finalizar
 const btnPay = document
     .getElementById("btnPay")
     .addEventListener("click", function payProd() {
@@ -101,6 +101,14 @@ const btnPay = document
         document.getElementById('toPay').innerHTML = '$'+totalToPay;
         seleccion = [];
         totalToPay = 0;
+
+        // Limpia campos
+        document.getElementById("priceLabel").innerHTML = "";
+        let selectProd = document.getElementById("selectProd");
+        let selectQty = document.getElementById("cantidad");
+        selectProd.selectedIndex = 0;
+        selectQty.selectedIndex = 0;
+
     });
 
 // Carga el  precio  x   Kilo del producto seleccionado en el selectBox
